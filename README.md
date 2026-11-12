@@ -4,6 +4,11 @@
 
 ---
 
+## Live Demo
+
+- **Production URL:** [https://linklens-safety-lab.vercel.app/](https://linklens-safety-lab.vercel.app/)
+- **Mode:** Live browser-only URL inspection lab deployed on Vercel.
+
 ## Application Preview
 
 ![LinkLens URL Safety & Anatomy Lab](docs/screenshot.png)
