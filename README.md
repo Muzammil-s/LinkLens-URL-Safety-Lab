@@ -1,22 +1,56 @@
-# LinkLens — URL Safety Lab
+# LinkLens — Privacy-First URL Safety & Anatomy Lab
 
-LinkLens is a small, privacy-first educational tool that inspects a URL for a handful of common warning indicators. It runs entirely in the browser using the built-in URL parser. It does not visit the submitted website or send the address to a server.
+**LinkLens** is a zero-dependency client-side URL inspection and phishing-awareness learning tool. All URL parsing, heuristic checks, and tracking-parameter stripping run locally in the browser with **zero external API calls**.
+
+---
+
+## Application Preview
+
+![LinkLens URL Safety & Anatomy Lab](docs/screenshot.png)
+
 
 ## Features
-- Parses HTTP and HTTPS links.
-- Highlights plain HTTP, embedded URL credentials, punycode labels, IP-address hosts, many subdomain levels, non-default ports and unusually long URLs.
-- Explains why each indicator deserves attention.
-- Includes a sample address and mobile-friendly interface.
-- No API key, backend, account or external dependency.
 
-## Run
-Open `index.html` in a browser, or serve this folder with VS Code Live Server.
+- **Local Heuristic Checks**
+  - Detects unencrypted `http://` transport and non-standard ports
+  - Flags deceptive `user@host` authority spoofing syntax
+  - Identifies Punycode (`xn--`) internationalized labels (homoglyph awareness)
+  - Detects direct IPv4/IPv6 hosts, URL shorteners, and deeply nested subdomains
+  - Flags executable extensions (`.exe`, `.scr`, `.apk`, `.ps1`, etc.) in URL paths
+- **Parsed URL Anatomy & Tracker Stripping**
+  - Breaks down protocol, hostname, port, path, fragment, and query parameters
+  - Highlights common marketing trackers (`utm_*`, `fbclid`, `gclid`, `msclkid`) and lets you copy a clean URL
+- **Educational Presets, Session History & JSON Export**
+  - Includes built-in test URLs, session-only history, and exportable JSON inspection reports
 
-## Deploy
-Import this repository into Vercel as a static site, or publish the folder with GitHub Pages. No build command is needed.
+---
 
-## Important limitation
-LinkLens is an educational heuristic tool, not an anti-phishing engine or reputation checker. Indicators can occur on legitimate sites. A clean result is not proof of safety. The tool does not verify certificates, domain ownership, redirects, site content or threat-intelligence feeds.
+## Tech Stack
 
-## Built with
-HTML · CSS · Vanilla JavaScript · URL API
+- Semantic HTML5, CSS3, ES Module Vanilla JavaScript (`URL` / `URLSearchParams` Web APIs)
+- Node.js built-in test runner (`node:test`) for unit verification
+
+---
+
+## Run Locally & Test
+
+```bash
+# Run unit tests (Node 18+)
+node --test tests/linklens.test.mjs
+
+# Serve locally
+npx serve .
+```
+
+---
+
+## Honest Limitations
+
+- LinkLens evaluates **URL structure only** — it does not fetch target websites, resolve DNS, inspect TLS certificates, or query threat-intelligence feeds.
+- Passing structural checks does not guarantee a link is safe, and triggering a heuristic does not prove malicious intent.
+
+---
+
+## Author
+
+**Muzammil Shabbir** — [GitHub](https://github.com/Muzammil-s) · [LinkedIn](https://www.linkedin.com/in/muzammil-shabbir-7368a7382)
